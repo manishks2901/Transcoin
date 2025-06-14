@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Wrapper from "@/components/wrapper";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,10 +27,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-blue-950 via-gray-950 to-purple-950 min-h-screen`}
       >
         <Wrapper>
-        {children}
+          <div className="flex flex-col min-h-screen">
+            <header className="w-full flex items-center justify-between px-8 py-6 bg-gray-900 bg-opacity-80 shadow-lg border-b border-blue-900/40">
+              <div className="flex items-center gap-3">
+                <Image src="/file.svg" alt="PYUSD Logo" width={32} height={32} className="w-8 h-8" />
+                <span className="text-2xl font-bold text-blue-400 tracking-tight">Transcoin</span>
+              </div>
+              <div className="flex items-center gap-4">
+                {/* WalletMultiButton is rendered here for consistency */}
+              </div>
+            </header>
+            <main className="flex-1 flex flex-col items-center justify-center">
+              {children}
+            </main>
+            <footer className="w-full text-center text-gray-500 text-xs py-4 bg-gray-900 bg-opacity-70 border-t border-blue-900/40">
+              &copy; {new Date().getFullYear()} Transcoin. All rights reserved.
+            </footer>
+          </div>
         </Wrapper>
       </body>
     </html>

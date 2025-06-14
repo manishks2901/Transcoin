@@ -4,6 +4,7 @@ import {  PublicKey } from "@solana/web3.js";
 
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import { useEffect, useState } from "react";
+
 export default function Sidebar() {
   const wallet = useWallet();
   const { connection } = useConnection();
@@ -18,6 +19,8 @@ export default function Sidebar() {
         const tokenAccount = await connection.getParsedTokenAccountsByOwner(wallet.publicKey as PublicKey, {
           mint: PYUSD_MINT,
         });
+        
+        console.log("address",tokenAccount.value[0].pubkey.toBase58())
         console.log(
           "pyusd balance is ",
           tokenAccount.value[0]?.account.data.parsed.info.tokenAmount.uiAmount

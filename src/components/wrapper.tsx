@@ -13,9 +13,10 @@ import "@solana/wallet-adapter-react-ui/styles.css";
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <ConnectionProvider endpoint="https://api.devnet.solana.com">
-      <WalletProvider wallets={[]}>
+      <WalletProvider wallets={[]} autoConnect>
         <WalletModalProvider>
-          <WalletMultiButton />
+          <WalletMultiButton/>
+          {/* WalletMultiButton will be rendered in the layout header for consistency */}
           {children}
         </WalletModalProvider>
       </WalletProvider>
